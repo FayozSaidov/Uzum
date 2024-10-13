@@ -9,15 +9,15 @@ const UnderHedaer = () => {
     
     const navigation = [
         {
-            img: CgProfile,
+            img: <CgProfile/>,
             text: 'Войти'
         },
         {
-            img: FaRegHeart,
+            img: <FaRegHeart/>,
             text: 'Избранное'
         },
         {
-            img: BsHandbag,
+            img: <BsHandbag/>,
             text: 'Корзина'
         }
     ]
@@ -40,20 +40,10 @@ const UnderHedaer = () => {
        
        {navigation.map((item, idx) => (
         <div className="flex items-center cursor-pointer">
-          <img src={item.img} alt="" />
+          {item.img} 
           <p className="text-[14px] ml-[15px]">{item.text}</p>
         </div>
        ))}
-
-       
-        {/* <div className="flex items-center cursor-pointer">
-          <FaRegHeart size={'20px'}/>
-          <p className="text-[14px] ml-[15px]">Избранное</p>
-        </div>
-        <div className="flex items-center cursor-pointer">
-          <BsHandbag size={'20px'}/>
-          <p className="text-[14px] ml-[15px]">Корзина</p>
-        </div> */}
       </div>
     </>
   );

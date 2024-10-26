@@ -1,6 +1,6 @@
 import { IoLocationOutline } from "react-icons/io5";
-import russianImg from "../img/free-icon-rusia-5373047.png";
-import uzbImg from "../img/free-icon-uzbekistan-8603691.png";
+import russianImg from "../assets/free-icon-rusia-5373047.png";
+import uzbImg from "../assets/free-icon-uzbekistan-8603691.png";
 
 const Header = () => {
   return (
@@ -26,17 +26,17 @@ const Header = () => {
             <div className="w-[500px] flex justify-between items-center">
               <a
                 href="#"
-                className="text-violet-600 text-[14px] mr-[15px] font-medium"
+                className="text-violet-600 text-[14px] hover:font-semibold duration-300 mr-[15px] font-medium"
               >
                 Продавайте на Uzum
               </a>
               <a
                 href="#"
-                className="text-[#4D4F59] text-[14px] mr-[15px] font-medium"
+                className="text-[#4D4F59] hover:font-semibold duration-300 text-[14px] mr-[15px] font-medium"
               >
                 Вопрос-ответ
               </a>
-              <a href="#" className="text-[#4D4F59] text-[14xpx] font-medium">
+              <a href="#" className="text-[#4D4F59] hover:font-semibold duration-300 text-[14xpx] font-medium">
                 Мои заказы
               </a>
               <span className="ml-[15px] flex ">

@@ -4,12 +4,22 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import slide_1 from '../assets/slide_1.jpg' 
+import slide_2 from '../assets/slide_2.jpg' 
+import slide_3 from '../assets/slide_3.jpg' 
+import slide_4 from '../assets/slide_4.jpg' 
+import slide_5 from '../assets/slide_5.jpg' 
+import slide_6 from '../assets/slide_6.jpg'
+import slide_7 from '../assets/slide_7.jpg'
 
 const SwiperInMain = () => {
+
+  const SwiperImg = [slide_1, slide_2, slide_3, slide_4, slide_5, slide_6, slide_7]
+
   return (
     <>
       <div className="w-full h-auto mt-[50px]">
-        <div className="w-5/6 h-[500px] mx-auto rounded-3xl truncate">
+        <div className="w-5/6 h-[500px] mx-auto rounded-3xl truncate bg-slate-50">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={50}
@@ -22,15 +32,11 @@ const SwiperInMain = () => {
             }}
             loop={true}
           >
-            <SwiperSlide className="w-full h-[500px] bg-red-300"></SwiperSlide>
-            <SwiperSlide className="w-full h-[500px] bg-yellow-300"></SwiperSlide>
-            <SwiperSlide className="w-full h-[500px] bg-green-300"></SwiperSlide>
-            <SwiperSlide className="w-full h-[500px] bg-violet-300"></SwiperSlide>
-            <SwiperSlide className="w-full h-[500px] bg-green-300"></SwiperSlide>
-            <SwiperSlide className="w-full h-[500px] bg-violet-300"></SwiperSlide>
-            <SwiperSlide className="w-full h-[500px] bg-green-300"></SwiperSlide>
-            <SwiperSlide className="w-full h-[500px] bg-violet-300"></SwiperSlide>
-            <SwiperSlide className="w-full h-[500px] bg-green-300"></SwiperSlide>
+          {SwiperImg.map((item, key) =>(
+            <SwiperSlide key={key} className="w-full h-[500px]">
+              <img src={item} alt="" className="w-5/6 h-5/6 mx-auto mt-[45px]"/>
+            </SwiperSlide>
+          ))}
           </Swiper>
 
         </div>

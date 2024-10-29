@@ -1,34 +1,21 @@
 import basketImg from "../assets/Group 237756.png";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import db from '../db.json'
 
 const PopularProductsPage = () => {
-  const [products, setProducts] = useState([]);
-  const [visibleProd, setVisibelity] = useState(
-    () => JSON.parse(localStorage.getItem("visibleProd")) || 4
-  );
-  useEffect(() => {
-    // Загрузка данных из db.json
-    fetch("/data.json")
-      .then((response) => response.json())
-      .then((data) => setProducts(data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  const products = db.goods
 
-  useEffect(() => {
-    localStorage.setItem("visibleProd", JSON.stringify(visibleProd));
-  }, [visibleProd]);
-  
-  const loadMore = () =>{
-    setVisibelity(prevCount =>  prevCount + 8)
+  const [visibleProd, setVisibility] = useState(4)
+
+  const loadMoreProd = () =>{
+    setVisibility(prevCount => prevCount + 8)
   }
 
   return (
-  
-
     <>
-      <div className="w-5/6 h-[500px] mx-auto mt-[70px]">
+      <div className="w-5/6 h-fit mx-auto mt-[70px]">
         <h1 className="text-[30px] font-semibold">Популярное</h1>
-        <div className="w-full h-auto flex flex-wrap mx-auto justify-between">
+        <div className="w-full h-fit flex flex-wrap mx-auto justify-between">
           {products.slice(0, visibleProd).map((product, key) => (
             <div
               key={key}
@@ -57,7 +44,7 @@ const PopularProductsPage = () => {
             </div>
           ))}
         </div>
-          <button onClick={loadMore} className="w-[700px] h-[60px] mt-[50px] hover:bg-slate-300 cursor-pointer transition-colors font-semibold bg-slate-200 rounded-lg block mx-auto mb-[50px]">Показать ещё 10</button>
+          <button onClick={loadMoreProd} className="w-[700px] h-[60px] mt-[50px] hover:bg-slate-300 cursor-pointer transition-colors font-semibold bg-slate-200 rounded-lg block mx-auto mb-[50px]">Показать ещё 8</button>
       </div>
     </>
   );

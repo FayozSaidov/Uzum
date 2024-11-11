@@ -1,21 +1,19 @@
 import "./App.css";
-import Header from "./components/Header";
-import UnderHedaer from "./components/UnderHedaer";
-import SwiperInMain from "./components/SwiperInMain";
-import PopularProductsPage from "./components/PopularProductsPage";
-// import ProductPage from "./components/ProductPage";`
-import BasketPage from "./components/BasketPage";
+import Header from "./components/TopHeader";
+import { Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import ProductPage from "./components/ProductPage";
+import Layout from "./layout/Layout";
 
 function App() {
   
   return (
-    <>
-      <Header />
-      <UnderHedaer />
-      <SwiperInMain />
-      <PopularProductsPage />
-      <BasketPage />
-    </>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/product/:id" element={<ProductPage/>}/>
+      </Routes>
+    </Layout>
   );
 }
 

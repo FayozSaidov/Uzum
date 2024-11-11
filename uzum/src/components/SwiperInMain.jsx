@@ -19,7 +19,7 @@ const SwiperInMain = () => {
   return (
     <>
       <div className="w-full h-auto mt-[50px]">
-        <div className="w-5/6 h-[500px] mx-auto rounded-3xl truncate bg-slate-50">
+        <div className=" h-[500px] mx-auto rounded-3xl truncate bg-slate-50">
           <Swiper
             modules={[Navigation, Pagination, Autoplay]}
             spaceBetween={50}
@@ -34,7 +34,7 @@ const SwiperInMain = () => {
           >
           {SwiperImg.map((item, key) =>(
             <SwiperSlide key={key} className="w-full h-[500px]">
-              <img src={item} alt="" className="w-5/6 h-5/6 mx-auto mt-[45px]"/>
+              <img src={item} alt="" className="w-full mx-auto object-contain"/>
             </SwiperSlide>
           ))}
           </Swiper>

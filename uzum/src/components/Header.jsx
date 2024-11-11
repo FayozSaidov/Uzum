@@ -1,56 +1,58 @@
-import { IoLocationOutline } from "react-icons/io5";
-import russianImg from "../assets/free-icon-rusia-5373047.png";
-import uzbImg from "../assets/free-icon-uzbekistan-8603691.png";
+import React from "react";
+import { Layers } from "lucide-react";
+import { IoSearchOutline } from "react-icons/io5";
+import { CgProfile } from "react-icons/cg";
+import { FaRegHeart } from "react-icons/fa";
+import { BsHandbag } from "react-icons/bs";
+import Logo from "../assets/logo_uzum.svg";
+import TopHeader from "./TopHeader";
 
-const Header = () => {
+const Hedaer = () => {
+  const navigation = [
+    {
+      img: <CgProfile />,
+      text: "Войти",
+    },
+    {
+      img: <FaRegHeart />,
+      text: "Избранное",
+    },
+    {
+      img: <BsHandbag />,
+      text: "Корзина",
+    },
+  ];
+
   return (
     <>
-      <div className="w-full h-[50px] flex justify-center">
-        <div className="w-full h-[30px] flex items-center bg-gray-200">
-          <div className="w-5/6 h-[30px] mx-auto flex items-center justify-between">
-            {/* left side */}
-            <div className="w-[400px] h-[30px] flex items-center">
-              <IoLocationOutline size={"20px"} className="mr-[5px]" />
-              <p className="text-[14px] cursor-pointer text-[#4D4F59]">
-                Город:{" "}
-                <span className="underline text-[14px] text-black font-medium">
-                  Самарканд
-                </span>
-              </p>
-              <p className="ml-[20px] text-[14px] font-semibold cursor-pointer">
-                Пункт выдачи
-              </p>
-            </div>
-
-            {/* right side */}
-            <div className="w-[500px] flex justify-between items-center">
-              <a
-                href="#"
-                className="text-violet-600 text-[14px] hover:font-semibold duration-300 mr-[15px] font-medium"
-              >
-                Продавайте на Uzum
-              </a>
-              <a
-                href="#"
-                className="text-[#4D4F59] hover:font-semibold duration-300 text-[14px] mr-[15px] font-medium"
-              >
-                Вопрос-ответ
-              </a>
-              <a href="#" className="text-[#4D4F59] hover:font-semibold duration-300 text-[14xpx] font-medium">
-                Мои заказы
-              </a>
-              <span className="ml-[15px] flex ">
-                <img src={russianImg} alt="" className="w-[20px]"/>
-                <p className="ml-[5px] text-[14px] text-black font-medium">
-                  Русский
-                </p>
-              </span>
-            </div>
-          </div>
+    <TopHeader/>
+      <div className="w-[92%] mx-auto flex h-[50px] items-center justify-between">
+        <img src={Logo}></img>
+        <button className="w-[120px] h-[40px] hover:bg-violet-400 duration-300 flex items-center justify-between p-5 bg-violet-100 text-[14px] font-semibold text-violet-600 rounded-md">
+          <Layers className="mr-[5px]" /> Каталог
+        </button>
+        <input
+          type="text"
+          name=""
+          id=""
+          placeholder="Искать товары и категории"
+          className="w-[450px] h-[40px] rounded-md outline-none focus:ring-0 p-4 border-l border-t border-b border-slate-300"
+        />
+        <div className="w-[70px] h-[40px] bg-slate-200 -ml-[45px] rounded-tl-none border-slate-300 border-t border-r border-b rounded-tr-[6px] cursor-pointer rounded-bl-none rounded-br-[6px] flex items-center justify-center">
+          <IoSearchOutline size={"20px"} />
         </div>
+
+        {navigation.map((item, idx) => (
+          <div key={idx} className="flex items-center cursor-pointer">
+            {item.img}
+            <p className="text-[14px] hover:font-semibold duration-300 ml-[15px]">
+              {item.text}
+            </p>
+          </div>
+        ))}
       </div>
     </>
   );
 };
 
-export default Header;
+export default Hedaer;

@@ -1,14 +1,26 @@
 import basketImg from "../assets/Group 237756.png";
-import React, { useState } from "react";
-import db from "../db.json";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
+import { getData } from "../services/api";
+import CounterOfDiscount from "./CounterOfDiscount";
 
 const PopularProductsPage = () => {
-  const products = db.goods;
-
+  const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
   const [visibleProd, setVisibility] = useState(4);
+
+  useEffect(() => {
+    getData()
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+  }, []);
+
+  const handleClick = (id) => {
+    navigate(`/product/${id}`);
+  };
 
   const loadMoreProd = () => {
     setVisibility((prevCount) => prevCount + 8);
@@ -16,12 +28,13 @@ const PopularProductsPage = () => {
 
   return (
     <>
-      <div className="w-5/6 h-fit mx-auto mt-[70px]">
+      <div className=" h-fit mx-auto mt-[70px]">
         <h1 className="text-[30px] font-semibold">Популярное</h1>
         <div className="w-full h-fit flex flex-wrap mx-auto justify-between">
           {products.slice(0, visibleProd).map((product, key) => (
             <div
               key={key}
+              onClick={() => handleClick(product.id)}
               className="w-[245px] ml-[20px] h-[450px] mt-[30px] overflow-hidden cursor-pointer hover:shadow-xl rounded-md transition"
             >
               <div className="w-[240px] p-3 h-[280px] rounded-xl overflow-hidden">
@@ -49,7 +62,7 @@ const PopularProductsPage = () => {
                 ) : (
                   <img
                     src={product.media[0]}
-                    className="w-[240px] h-[240px]"
+                    className="w-[240px] hover:scale-105 h-[240px] ease-in-out duration-300"
                     alt=""
                   />
                 )}
@@ -61,8 +74,12 @@ const PopularProductsPage = () => {
               </div>
               <div className="w-[225px] mx-auto h-[50px] -mt-[30px] justify-between flex items-center">
                 <span>
-                  <p className="line-through text-[12px] text-gray-500">
-                    35 000
+                  <p>
+                    <CounterOfDiscount
+                      price={product.price}
+                      percent={product.salePercentage}
+                      customStyles='line-through text-[12px] text-gray-500'
+                    />
                   </p>
                   <p className="text-[14px]">{product.price}</p>
                 </span>

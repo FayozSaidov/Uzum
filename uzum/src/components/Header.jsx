@@ -7,12 +7,34 @@ import { BsHandbag } from "react-icons/bs";
 import Logo from "../assets/logo_uzum.svg";
 import TopHeader from "./TopHeader";
 import Modal from "./ModalWindow";
+import LogOutModal from "./LogOutModal";
+
 
 const Header = () => {
   const [userName, setUserName] = useState("");
   const handleUserRegistered = (name) => {
     setUserName(name);
   };
+
+  // exit
+  const [isLogoutModalOpen, setIsLogoutModalOpen] = useState(false);
+  const openLogoutModal = () => {
+    setIsLogoutModalOpen(true);  // Открыть модальное окно выхода
+  };
+
+  const closeLogoutModal = () => {
+    setIsLogoutModalOpen(false);  // Закрыть модальное окно выхода
+  };
+
+  const handleLogout = () => {
+    setUserName("");  // Очистить имя пользователя
+    closeLogoutModal();  // Закрыть модальное окно выхода
+  };
+
+
+
+
+  //
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -34,8 +56,8 @@ const Header = () => {
   const navigation = [
     {
       img: <CgProfile />,
-      text: userName ? `${userName}` : "Войти", // Динамически меняем текст
-      onClick: openModal,
+      text: userName ? `${userName}` : "Войти", 
+      onClick: userName ? openLogoutModal : openModal,
     },
     {
       img: <FaRegHeart />,
@@ -81,6 +103,7 @@ const Header = () => {
           ))}
         </div>
         {isModalOpen && <Modal onClose={closeModal} onUserRegistered={handleUserRegistered} />}
+        {isLogoutModalOpen && <LogOutModal onClose={closeLogoutModal} onLogout={handleLogout} />}
       </div>
     </>
   );

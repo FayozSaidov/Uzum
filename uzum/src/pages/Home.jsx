@@ -8,7 +8,6 @@ const Home = () => {
     <>
       <SwiperInMain />
       <PopularProductsPage />
-      <Modal />
     </>
   )
 }
